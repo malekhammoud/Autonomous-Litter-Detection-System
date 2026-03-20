@@ -33,6 +33,8 @@ sleep 3
 echo "👤 Setting up user 'malek'..."
 sudo -u postgres psql -c "DO $$ BEGIN IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'malek') THEN CREATE ROLE malek WITH LOGIN PASSWORD 'password' CREATEDB; END IF; END $$;"
 sudo -u postgres psql -c "ALTER ROLE malek CREATEDB;"
+sudo -u postgres psql -c 'DO $$ BEGIN IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = ''malek'') THEN CREATE ROLE malek WITH LOGIN PASSWORD ''password'' CREATEDB; END IF; END $$;'
+sudo -u postgres psql -c "ALTER ROLE malek CREATEDB;"
 
 # Create database 'litter_detection' if it doesn't exist
 echo "🗄️ Setting up database 'litter_detection'..."
